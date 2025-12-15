@@ -5,8 +5,16 @@
 .page {
   min-height: 100vh;
   color: #e5edff;
-  background: radial-gradient(circle at 20% 20%, rgba(120, 69, 255, 0.18), transparent 35%),
-    radial-gradient(circle at 70% 40%, rgba(68, 202, 255, 0.12), transparent 35%),
+  background: radial-gradient(
+      circle at 20% 20%,
+      rgba(120, 69, 255, 0.18),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(68, 202, 255, 0.12),
+      transparent 35%
+    ),
     linear-gradient(135deg, #04060c 0%, #070814 45%, #0a0c16 100%);
   overflow-x: hidden;
 }
@@ -83,8 +91,16 @@
 .hero__gradient {
   position: absolute;
   inset: -20%;
-  background: radial-gradient(circle at 50% 40%, rgba(125, 92, 255, 0.35), transparent 55%),
-    radial-gradient(circle at 60% 60%, rgba(78, 255, 255, 0.26), transparent 40%);
+  background: radial-gradient(
+      circle at 50% 40%,
+      rgba(125, 92, 255, 0.35),
+      transparent 55%
+    ),
+    radial-gradient(
+      circle at 60% 60%,
+      rgba(78, 255, 255, 0.26),
+      transparent 40%
+    );
   filter: blur(70px);
   opacity: 0.9;
 }
@@ -92,18 +108,29 @@
 .hero__halo {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.08), transparent 45%);
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.08),
+    transparent 45%
+  );
   mix-blend-mode: screen;
 }
 
 .hero__grid {
   position: absolute;
   inset: 12% 8% 8% 8%;
-  background-image: linear-gradient(rgba(120, 245, 255, 0.08) 1px, transparent 1px),
+  background-image: linear-gradient(
+      rgba(120, 245, 255, 0.08) 1px,
+      transparent 1px
+    ),
     linear-gradient(90deg, rgba(120, 245, 255, 0.08) 1px, transparent 1px);
   background-size: 110px 110px, 110px 110px;
   opacity: 0.4;
-  mask-image: radial-gradient(circle at 50% 40%, rgba(255, 255, 255, 0.9), transparent 70%);
+  mask-image: radial-gradient(
+    circle at 50% 40%,
+    rgba(255, 255, 255, 0.9),
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -183,7 +210,8 @@
   letter-spacing: 0.02em;
   border: 1px solid transparent;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease,
+    background 0.2s ease;
 }
 
 .btn--primary {
@@ -257,7 +285,11 @@
   height: 160px;
   right: -20px;
   bottom: -40px;
-  background: radial-gradient(circle, rgba(122, 245, 255, 0.4), rgba(122, 122, 255, 0));
+  background: radial-gradient(
+    circle,
+    rgba(122, 245, 255, 0.4),
+    rgba(122, 122, 255, 0)
+  );
   filter: blur(4px);
   opacity: 0.8;
 }
@@ -312,7 +344,11 @@
   position: relative;
   padding: 22px;
   border-radius: 28px;
-  background: linear-gradient(150deg, rgba(63, 96, 255, 0.16), rgba(52, 210, 255, 0.12));
+  background: linear-gradient(
+    150deg,
+    rgba(63, 96, 255, 0.16),
+    rgba(52, 210, 255, 0.12)
+  );
   border: 1px solid rgba(122, 245, 255, 0.14);
   box-shadow: 0 25px 70px rgba(0, 0, 0, 0.45);
   overflow: hidden;
@@ -350,7 +386,11 @@
 .mockup__tile {
   aspect-ratio: 1;
   border-radius: 16px;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0)),
+  background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0)
+    ),
     linear-gradient(140deg, rgba(122, 245, 255, 0.2), rgba(122, 122, 255, 0.12));
   border: 1px solid rgba(255, 255, 255, 0.12);
   box-shadow: inset 0 0 25px rgba(122, 245, 255, 0.08);
@@ -362,7 +402,11 @@
   height: 240px;
   top: -40px;
   right: -60px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.12), transparent 60%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.12),
+    transparent 60%
+  );
   filter: blur(8px);
   opacity: 0.8;
 }
