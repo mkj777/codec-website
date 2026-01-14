@@ -1,73 +1,114 @@
-# React + TypeScript + Vite
+# Codec Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, responsive landing page for Codec built with React, TypeScript, and Vite. Features smooth scroll-triggered animations, component-based architecture, and a polished user experience.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Hero Section** - Compelling introduction with eye-catching design
+- **Showcase** - Interactive product showcase section
+- **Features** - Detailed features overview highlighting key capabilities
+- **Download Section** - Call-to-action for user engagement
+- **Scroll Animations** - Smooth, performance-optimized animations triggered on scroll using Intersection Observer API
+- **Responsive Design** - Mobile-first approach with responsive layout
+- **Component-Based** - Modular, reusable component architecture
+- **Type-Safe** - Full TypeScript support for better development experience
+- **Icon System** - Custom icon components for visual consistency
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **React** 19.2.0 - UI library
+- **TypeScript** - Type-safe JavaScript
+- **Vite** - Next generation frontend build tool
+- **CSS Modules** - Scoped styling for components
+- **ESLint** - Code quality and consistency
+- **pnpm** - Fast, efficient package manager
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Prerequisites
+- Node.js (v16 or higher)
+- pnpm
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/codec-web.git
+cd codec-web
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+2. Install dependencies:
+```bash
+pnpm install
 ```
+
+### Development
+
+Start the development server with hot module replacement:
+
+```bash
+pnpm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+### Building
+
+Build for production:
+
+```bash
+pnpm run build
+```
+
+### Preview
+
+Preview the production build locally:
+
+```bash
+pnpm run preview
+```
+
+### Linting
+
+Run ESLint to check code quality:
+
+```bash
+pnpm run lint
+```
+
+## Project Structure
+
+```
+src/
+├── components/
+│   ├── Hero/              # Hero section component
+│   ├── Showcase/          # Product showcase component
+│   ├── Features/          # Features overview component
+│   ├── Download/          # Download section component
+│   ├── Footer/            # Footer component
+│   ├── Icons/             # Icon components
+│   └── Header/            # Header component
+├── types/                 # TypeScript type definitions
+├── assets/                # Static assets and images
+├── App.tsx                # Main App component
+├── App.css                # Global styles
+└── main.tsx               # Application entry point
+```
+
+## Component Features
+
+### Scroll Animations
+Components support scroll-triggered animations using Intersection Observer API:
+- `.animate-on-scroll` - Animate element when it enters viewport
+- `.animate-children` - Animate child elements on scroll
+- Configurable threshold and root margin for fine-tuned animation triggers
+
+### Styling
+All components use CSS Modules for:
+- Scoped styling to prevent conflicts
+- Better maintainability
+- Component-specific theme customization
+
+## License
+
+MIT License - feel free to use this project for personal and commercial purposes.
