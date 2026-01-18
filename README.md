@@ -1,3 +1,5 @@
+https://codeclauncher.vercel.app/
+
 # Codec Web
 
 A modern, responsive landing page for Codec built with React, TypeScript, and Vite. Features smooth scroll-triggered animations, component-based architecture, and a polished user experience.
