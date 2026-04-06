@@ -38,29 +38,77 @@
 }
 
 .card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 1.75rem;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+  will-change: transform;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(197, 66, 37, 0.08),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
 }
 
 .card:hover {
-  transform: translateY(-4px);
-  border-color: rgba(197, 66, 37, 0.3);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  transform: translateY(-6px) scale(1.02);
+  border-color: rgba(197, 66, 37, 0.4);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: 16px;
+  padding: 1px;
+  background: linear-gradient(135deg, transparent, rgba(197, 66, 37, 0.3), transparent);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.card:hover::after {
+  opacity: 1;
 }
 
 .iconWrapper {
-  width: 48px;
-  height: 48px;
+  width: 56px;
+  height: 56px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--accent-subtle);
-  border-radius: 10px;
-  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, var(--accent-subtle), rgba(197, 66, 37, 0.18));
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
   color: var(--accent);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover .iconWrapper {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .cardTitle {

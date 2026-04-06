@@ -1,8 +1,19 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Hero, Features, Showcase, Download, Footer } from './components';
+import { NotFound } from './NotFound';
 import './App.css';
 
 function App() {
+  const [isNotFound, setIsNotFound] = useState(false);
+
+  useEffect(() => {
+    // Simple client-side routing check
+    const path = window.location.pathname;
+    if (path !== '/' && path !== '/index.html') {
+      setIsNotFound(true);
+    }
+  }, []);
+
   // Scroll-triggered animations
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -20,7 +31,11 @@ function App() {
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [isNotFound]);
+
+  if (isNotFound) {
+    return <NotFound />;
+  }
 
   return (
     <div className="app">

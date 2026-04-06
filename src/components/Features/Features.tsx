@@ -48,6 +48,15 @@ const features: FeatureItem[] = [
 ];
 
 export function Features() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    card.style.setProperty('--mouse-x', `${x}%`);
+    card.style.setProperty('--mouse-y', `${y}%`);
+  };
+
   return (
     <section className={styles.features} id="features">
       <div className={styles.container}>
@@ -59,7 +68,11 @@ export function Features() {
         </div>
         <div className={`${styles.grid} animate-children`}>
           {features.map((feature, index) => (
-            <article key={index} className={styles.card}>
+            <article 
+              key={index} 
+              className={styles.card}
+              onMouseMove={handleMouseMove}
+            >
               <div className={styles.iconWrapper}>
                 {feature.icon}
               </div>

@@ -8,13 +8,15 @@ A modern, responsive landing page for Codec built with React, TypeScript, and Vi
 
 - **Hero Section** - Compelling introduction with eye-catching design
 - **Showcase** - Interactive product showcase section
-- **Features** - Detailed features overview highlighting key capabilities
+- **Features** - Enhanced feature cards with mouse-tracking glow effects
 - **Download Section** - Call-to-action for user engagement
-- **Scroll Animations** - Smooth, performance-optimized animations triggered on scroll using Intersection Observer API
+- **404 Page** - Beautiful custom error page with animated mascot
+- **Scroll Animations** - Performance-optimized animations with Intersection Observer API
 - **Responsive Design** - Mobile-first approach with responsive layout
 - **Component-Based** - Modular, reusable component architecture
 - **Type-Safe** - Full TypeScript support for better development experience
 - **Icon System** - Custom icon components for visual consistency
+- **Performance First** - Font preloading, GPU-accelerated animations, and reduced motion support
 
 ## Tech Stack
 
