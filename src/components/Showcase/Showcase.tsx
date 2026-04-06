@@ -1,15 +1,15 @@
-import { useState, useEffect, useCallback } from 'react';
-import styles from './Showcase.module.css';
-import screenshotLibrary from '../../assets/Codec Library.png';
-import screenshotGame from '../../assets/Codec Game.png';
-import screenshotIntro from '../../assets/Codec Intro.png';
-import screenshotStart from '../../assets/Codec Start.png';
+import { useState, useEffect, useCallback } from "react";
+import styles from "./Showcase.module.css";
+import screenshotLibrary from "../../assets/Codec_LibraryView.png";
+import screenshotGame from "../../assets/Codec_GameDetail.png";
+import screenshotIntro from "../../assets/Codec_Loading.png";
+import screenshotStart from "../../assets/Codec_Onboarding.png";
 
 const screenshots = [
-  { src: screenshotIntro, alt: 'Codec Welcome Screen', label: 'Welcome' },
-  { src: screenshotStart, alt: 'Codec Start Screen', label: 'Start' },
-  { src: screenshotLibrary, alt: 'Codec Library View', label: 'Library' },
-  { src: screenshotGame, alt: 'Codec Game Details', label: 'Game Details' },
+  { src: screenshotIntro, alt: "Codec Welcome Screen", label: "Welcome" },
+  { src: screenshotStart, alt: "Codec Start Screen", label: "Start" },
+  { src: screenshotLibrary, alt: "Codec Library View", label: "Library" },
+  { src: screenshotGame, alt: "Codec Game Details", label: "Game Details" },
 ];
 
 const AUTOPLAY_INTERVAL = 5000;
@@ -36,11 +36,11 @@ export function Showcase() {
   // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') goToPrev();
-      if (e.key === 'ArrowRight') goToNext();
+      if (e.key === "ArrowLeft") goToPrev();
+      if (e.key === "ArrowRight") goToNext();
     };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [goToPrev, goToNext]);
 
   return (
@@ -52,20 +52,31 @@ export function Showcase() {
             A clean interface that stays out of your way.
           </p>
         </div>
-        
-        <div 
+
+        <div
           className={styles.screenshotWrapper}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <button className={styles.navButton} onClick={goToPrev} aria-label="Previous screenshot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <button
+            className={styles.navButton}
+            onClick={goToPrev}
+            aria-label="Previous screenshot"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
           </button>
-          
+
           <div className={styles.screenshotContainer}>
-            <div 
+            <div
               className={styles.slideTrack}
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
@@ -79,27 +90,42 @@ export function Showcase() {
               ))}
             </div>
             <div className={styles.slideInfo}>
-              <span className={styles.slideLabel}>{screenshots[activeIndex].label}</span>
-              <span className={styles.slideCounter}>{activeIndex + 1} / {screenshots.length}</span>
+              <span className={styles.slideLabel}>
+                {screenshots[activeIndex].label}
+              </span>
+              <span className={styles.slideCounter}>
+                {activeIndex + 1} / {screenshots.length}
+              </span>
             </div>
             <div className={styles.progressBar}>
               {screenshots.map((_, index) => (
                 <button
                   key={index}
-                  className={`${styles.progressDot} ${index === activeIndex ? styles.progressDotActive : ''}`}
+                  className={`${styles.progressDot} ${index === activeIndex ? styles.progressDotActive : ""}`}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>
           </div>
-          
-          <button className={styles.navButton} onClick={goToNext} aria-label="Next screenshot">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+
+          <button
+            className={styles.navButton}
+            onClick={goToNext}
+            aria-label="Next screenshot"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+            >
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
-          
+
           <div className={styles.screenshotGlow}></div>
         </div>
 

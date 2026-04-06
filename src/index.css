@@ -1,47 +1,47 @@
 /* Sansation Font Family */
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-Light.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-Light.ttf") format("truetype");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-LightItalic.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-Regular.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-Regular.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-Italic.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-Bold.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-Bold.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Sansation';
-  src: url('./assets/Sansation-BoldItalic.ttf') format('truetype');
+  font-family: "Sansation";
+  src: url("./assets/fonts/Sansation-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
   font-display: swap;
@@ -53,15 +53,15 @@
   --bg-dark: #1e1e1e;
   --bg-darker: #181818;
   --bg-card: #262626;
-  --accent: #C54225;
-  --accent-hover: #D55233;
+  --accent: #c54225;
+  --accent-hover: #d55233;
   --accent-subtle: rgba(197, 66, 37, 0.12);
-  
+
   /* Text colors */
-  --text-primary: #F9F9F9;
-  --text-secondary: #BBBBBB;
+  --text-primary: #f9f9f9;
+  --text-secondary: #bbbbbb;
   --text-muted: #888888;
-  
+
   /* Surface colors */
   --surface: rgba(255, 255, 255, 0.04);
   --surface-hover: rgba(255, 255, 255, 0.08);
@@ -86,7 +86,15 @@ html {
 }
 
 body {
-  font-family: 'Sansation', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+  font-family:
+    "Sansation",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -164,7 +172,9 @@ ul {
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1), transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity, transform;
 }
 
@@ -178,16 +188,30 @@ ul {
 .animate-children > * {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  transition:
+    opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: opacity, transform;
 }
 
-.animate-children.visible > *:nth-child(1) { transition-delay: 0ms; }
-.animate-children.visible > *:nth-child(2) { transition-delay: 80ms; }
-.animate-children.visible > *:nth-child(3) { transition-delay: 160ms; }
-.animate-children.visible > *:nth-child(4) { transition-delay: 240ms; }
-.animate-children.visible > *:nth-child(5) { transition-delay: 320ms; }
-.animate-children.visible > *:nth-child(6) { transition-delay: 400ms; }
+.animate-children.visible > *:nth-child(1) {
+  transition-delay: 0ms;
+}
+.animate-children.visible > *:nth-child(2) {
+  transition-delay: 80ms;
+}
+.animate-children.visible > *:nth-child(3) {
+  transition-delay: 160ms;
+}
+.animate-children.visible > *:nth-child(4) {
+  transition-delay: 240ms;
+}
+.animate-children.visible > *:nth-child(5) {
+  transition-delay: 320ms;
+}
+.animate-children.visible > *:nth-child(6) {
+  transition-delay: 400ms;
+}
 
 .animate-children.visible > * {
   opacity: 1;
