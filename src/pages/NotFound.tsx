@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import mascotImage from '../assets/shrimpSleep.png';
 import './NotFound.css';
 
 export function NotFound() {
@@ -31,7 +32,7 @@ export function NotFound() {
         </div>
         <div className="not-found-image-wrapper">
           <img
-            src="/src/assets/shrimpSleep.png"
+            src={mascotImage}
             alt="Codec Mascot Resting"
             className="not-found-mascot"
           />
