@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Hero } from "./components/Hero";
 import { Showcase } from "./components/Showcase";
 import { Features } from "./components/Features";
@@ -7,15 +7,8 @@ import { Footer } from "./components/Footer";
 import { NotFound } from "./pages/NotFound";
 
 function App() {
-  const [isNotFound, setIsNotFound] = useState(false);
-
-  useEffect(() => {
-    // Simple client-side routing check
-    const path = window.location.pathname;
-    if (path !== "/" && path !== "/index.html") {
-      setIsNotFound(true);
-    }
-  }, []);
+  const path = window.location.pathname;
+  const isNotFound = path !== "/" && path !== "/index.html";
 
   // Scroll-triggered animations
   useEffect(() => {
@@ -36,7 +29,7 @@ function App() {
     elements.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, [isNotFound]);
+  }, []);
 
   if (isNotFound) {
     return <NotFound />;
