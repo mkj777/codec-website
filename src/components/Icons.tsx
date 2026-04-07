@@ -1,6 +1,3 @@
-// SVG Icon Components for Codec
-// Clean, minimal icons that match the brand
-
 interface IconProps {
   className?: string;
   size?: number;

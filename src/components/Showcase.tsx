@@ -1,9 +1,9 @@
 import { useState, useEffect, useCallback } from "react";
-import styles from "./Showcase.module.css";
-import screenshotLibrary from "../../assets/Codec_LibraryView.png";
-import screenshotGame from "../../assets/Codec_GameDetail.png";
-import screenshotIntro from "../../assets/Codec_Loading.png";
-import screenshotStart from "../../assets/Codec_Onboarding.png";
+import screenshotLibrary from "../assets/Codec_LibraryView.png";
+import screenshotGame from "../assets/Codec_GameDetail.png";
+import screenshotIntro from "../assets/Codec_Loading.png";
+import screenshotStart from "../assets/Codec_Onboarding.png";
+import "./components.css";
 
 const screenshots = [
   { src: screenshotIntro, alt: "Codec Welcome Screen", label: "Welcome" },
@@ -26,14 +26,12 @@ export function Showcase() {
     setActiveIndex((prev) => (prev === screenshots.length - 1 ? 0 : prev + 1));
   }, []);
 
-  // Autoplay
   useEffect(() => {
     if (isPaused) return;
     const timer = setInterval(goToNext, AUTOPLAY_INTERVAL);
     return () => clearInterval(timer);
   }, [isPaused, goToNext]);
 
-  // Keyboard navigation
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "ArrowLeft") goToPrev();
@@ -44,22 +42,22 @@ export function Showcase() {
   }, [goToPrev, goToNext]);
 
   return (
-    <section className={styles.showcase} id="showcase">
-      <div className={styles.container}>
-        <div className={`${styles.header} animate-on-scroll`}>
-          <h2 className={styles.title}>See it in action</h2>
-          <p className={styles.subtitle}>
+    <section className="showcase" id="showcase">
+      <div className="showcase-container">
+        <div className="showcase-header animate-on-scroll">
+          <h2 className="showcase-title">See it in action</h2>
+          <p className="showcase-subtitle">
             A clean interface that stays out of your way.
           </p>
         </div>
 
         <div
-          className={styles.screenshotWrapper}
+          className="showcase-screenshot-wrapper"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
           <button
-            className={styles.navButton}
+            className="showcase-nav-button"
             onClick={goToPrev}
             aria-label="Previous screenshot"
           >
@@ -75,9 +73,9 @@ export function Showcase() {
             </svg>
           </button>
 
-          <div className={styles.screenshotContainer}>
+          <div className="showcase-screenshot-container">
             <div
-              className={styles.slideTrack}
+              className="showcase-slide-track"
               style={{ transform: `translateX(-${activeIndex * 100}%)` }}
             >
               {screenshots.map((shot, index) => (
@@ -85,23 +83,23 @@ export function Showcase() {
                   key={index}
                   src={shot.src}
                   alt={shot.alt}
-                  className={styles.screenshot}
+                  className="showcase-screenshot"
                 />
               ))}
             </div>
-            <div className={styles.slideInfo}>
-              <span className={styles.slideLabel}>
+            <div className="showcase-slide-info">
+              <span className="showcase-slide-label">
                 {screenshots[activeIndex].label}
               </span>
-              <span className={styles.slideCounter}>
+              <span className="showcase-slide-counter">
                 {activeIndex + 1} / {screenshots.length}
               </span>
             </div>
-            <div className={styles.progressBar}>
+            <div className="showcase-progress-bar">
               {screenshots.map((_, index) => (
                 <button
                   key={index}
-                  className={`${styles.progressDot} ${index === activeIndex ? styles.progressDotActive : ""}`}
+                  className={`showcase-progress-dot ${index === activeIndex ? "showcase-progress-dot-active" : ""}`}
                   onClick={() => setActiveIndex(index)}
                   aria-label={`Go to slide ${index + 1}`}
                 />
@@ -110,7 +108,7 @@ export function Showcase() {
           </div>
 
           <button
-            className={styles.navButton}
+            className="showcase-nav-button"
             onClick={goToNext}
             aria-label="Next screenshot"
           >
@@ -126,23 +124,23 @@ export function Showcase() {
             </svg>
           </button>
 
-          <div className={styles.screenshotGlow}></div>
+          <div className="showcase-glow"></div>
         </div>
 
-        <div className={styles.highlights}>
-          <div className={styles.highlight}>
-            <span className={styles.highlightLabel}>Scan</span>
-            <span className={styles.highlightDesc}>Auto-detect games</span>
+        <div className="showcase-highlights">
+          <div className="showcase-highlight">
+            <span className="showcase-highlight-label">Scan</span>
+            <span className="showcase-highlight-desc">Auto-detect games</span>
           </div>
-          <div className={styles.highlightDivider}></div>
-          <div className={styles.highlight}>
-            <span className={styles.highlightLabel}>Organize</span>
-            <span className={styles.highlightDesc}>One unified library</span>
+          <div className="showcase-highlight-divider"></div>
+          <div className="showcase-highlight">
+            <span className="showcase-highlight-label">Organize</span>
+            <span className="showcase-highlight-desc">One unified library</span>
           </div>
-          <div className={styles.highlightDivider}></div>
-          <div className={styles.highlight}>
-            <span className={styles.highlightLabel}>Play</span>
-            <span className={styles.highlightDesc}>Launch instantly</span>
+          <div className="showcase-highlight-divider"></div>
+          <div className="showcase-highlight">
+            <span className="showcase-highlight-label">Play</span>
+            <span className="showcase-highlight-desc">Launch instantly</span>
           </div>
         </div>
       </div>

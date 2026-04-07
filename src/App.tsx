@@ -1,5 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Hero, Features, Showcase, Download, Footer } from './components';
+import { Hero } from './components/Hero';
+import { Showcase } from './components/Showcase';
+import { Features } from './components/Features';
+import { Download } from './components/Download';
+import { Footer } from './components/Footer';
 import { NotFound } from './NotFound';
 import './App.css';
 
