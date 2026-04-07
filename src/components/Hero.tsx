@@ -12,8 +12,8 @@ export function Hero() {
             <span className="hero-highlight"> your games</span>
           </h1>
           <p className="hero-subtitle">
-            Codec scans your PC, finds your games, and puts them all in one
-            clean library. No clutter, no hassle, just play.
+            Codec scans your PC and puts your Games in one clean library.
+            Hopefully a place for everything you need.
           </p>
           <div className="hero-actions">
             <a
