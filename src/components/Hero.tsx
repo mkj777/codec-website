@@ -17,7 +17,7 @@ export function Hero() {
           </p>
           <div className="hero-actions">
             <a
-              href="https://github.com/mkj777/codec/releases/download/0.7.1/Codec_Installer_0.7.1.exe"
+              href="https://github.com/mkj777/codec/releases/download/0.7.2/Codec_Installer_0.7.2.exe"
               className="hero-primary-button"
             >
               <DownloadIcon size={18} />
