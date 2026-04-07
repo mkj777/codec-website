@@ -1,14 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
 import screenshotLibrary from "../assets/Codec_LibraryView.png";
 import screenshotGame from "../assets/Codec_GameDetail.png";
-import screenshotIntro from "../assets/Codec_Loading.png";
-import screenshotStart from "../assets/Codec_Onboarding.png";
+import screenshotIntro from "../assets/Codec_Onboarding.png";
+import screenshotStart from "../assets/Codec_Loading.png";
 import "./components.css";
 
 const screenshots = [
-  { src: screenshotIntro, alt: "Codec Welcome Screen", label: "Welcome" },
-  { src: screenshotStart, alt: "Codec Start Screen", label: "Start" },
-  { src: screenshotLibrary, alt: "Codec Library View", label: "Library" },
+  { src: screenshotIntro, alt: "Codec Welcome Screen", label: "Onboarding" },
+  { src: screenshotStart, alt: "Codec Start Screen", label: "Scanning" },
+  { src: screenshotLibrary, alt: "Codec Library View", label: "Game Library" },
   { src: screenshotGame, alt: "Codec Game Details", label: "Game Details" },
 ];
 
