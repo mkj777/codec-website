@@ -4,7 +4,7 @@ A modern, responsive landing page for Codec built with React, TypeScript, and Vi
 
 ### Tech Stack
 
-- performant node package manager (pnpm)
+- Performant node package manager (pnpm)
 - Vite React Typescript
 
 ### Deployment
