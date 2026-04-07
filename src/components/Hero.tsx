@@ -16,15 +16,13 @@ export function Hero() {
             clean library. No clutter, no hassle—just play.
           </p>
           <div className="hero-actions">
-            <div>
-              <a
-                href="https://github.com/mkj777/codec/releases/download/0.5.0/Codec_Installer_0.5.0.exe"
-                className="hero-primary-button"
-              >
-                <DownloadIcon size={18} />
-                Download
-              </a>
-            </div>
+            <a
+              href="https://github.com/mkj777/codec/releases/download/0.5.0/Codec_Installer_0.5.0.exe"
+              className="hero-primary-button"
+            >
+              <DownloadIcon size={18} />
+              Download
+            </a>
             <a href="#showcase" className="hero-secondary-button">
               See how it works
             </a>

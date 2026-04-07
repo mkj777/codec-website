@@ -79,6 +79,8 @@
 }
 
 .hero-secondary-button {
+  display: inline-flex;
+  align-items: center;
   font-family: 'Sansation', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
