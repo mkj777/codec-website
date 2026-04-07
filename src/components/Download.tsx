@@ -14,7 +14,7 @@ export function Download() {
           </p>
           <div className="download-actions">
             <a
-              href="https://github.com/mkj777/codec/releases/download/0.5.0/Codec_Installer_0.5.0.exe"
+              href="https://github.com/mkj777/codec/releases/download/0.7.1/Codec_Installer_0.7.1.exe"
               className="download-primary-button"
             >
               <DownloadIcon size={18} />
