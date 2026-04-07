@@ -13,7 +13,7 @@ export function Hero() {
           </h1>
           <p className="hero-subtitle">
             Codec scans your PC, finds your games, and puts them all in one
-            clean library. No clutter, no hassle—just play.
+            clean library. No clutter, no hassle, just play.
           </p>
           <div className="hero-actions">
             <a
