@@ -11,4 +11,3 @@ A modern, responsive landing page for Codec built with React, TypeScript, and Vi
 
 [Codec Launcher](https://codeclauncher.vercel.app/)
 
-## Soon to be
