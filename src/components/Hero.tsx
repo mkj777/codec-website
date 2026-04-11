@@ -18,7 +18,6 @@ export function Hero({ downloadUrl }: HeroProps) {
               hopefully the library for everything you need
             </span>
           </h1>
-          <p className="hero-subtitle">Scan. Organize. Play.</p>
           <div className="hero-actions" id="download">
             <a href={downloadUrl} className="hero-primary-button">
               <DownloadIcon size={18} />
