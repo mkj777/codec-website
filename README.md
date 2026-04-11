@@ -1,14 +1,4 @@
-## Codec Web
+## Codec Website
 
-A modern, responsive landing page for Codec built with React, TypeScript, and Vite.
-
-### Tech Stack
-
-- Performant node package manager (pnpm)
-- Vite React Typescript
-
-### Deployment
-
-[Codec Launcher](https://codeclauncher.vercel.app/)
-
-## Commit
+Landing page for Codec built with React, TypeScript, and Vite.  
+Performant node package manager (pnpm)
