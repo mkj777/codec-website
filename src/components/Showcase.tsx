@@ -45,9 +45,9 @@ export function Showcase() {
     <section className="showcase" id="showcase">
       <div className="showcase-container">
         <div className="showcase-header animate-on-scroll">
-          <h2 className="showcase-title">See it in action</h2>
+          <h2 className="showcase-title">How it looks</h2>
           <p className="showcase-subtitle">
-            A clean interface that stays out of your way.
+            More features to come, still in Development
           </p>
         </div>
 
@@ -129,18 +129,24 @@ export function Showcase() {
 
         <div className="showcase-highlights">
           <div className="showcase-highlight">
-            <span className="showcase-highlight-label">Scan</span>
-            <span className="showcase-highlight-desc">Auto-detect games</span>
+            <span className="showcase-highlight-label">Auto-detect</span>
+            <span className="showcase-highlight-desc">
+              no matter where they are from
+            </span>
           </div>
           <div className="showcase-highlight-divider"></div>
           <div className="showcase-highlight">
-            <span className="showcase-highlight-label">Organize</span>
-            <span className="showcase-highlight-desc">One unified library</span>
+            <span className="showcase-highlight-label">Launch-Script</span>
+            <span className="showcase-highlight-desc">
+              supports Launch Scripts
+            </span>
           </div>
           <div className="showcase-highlight-divider"></div>
           <div className="showcase-highlight">
-            <span className="showcase-highlight-label">Play</span>
-            <span className="showcase-highlight-desc">Launch instantly</span>
+            <span className="showcase-highlight-label">Play them</span>
+            <span className="showcase-highlight-desc">
+              launch Games through Codec
+            </span>
           </div>
         </div>
       </div>
