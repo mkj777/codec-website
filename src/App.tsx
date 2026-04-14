@@ -3,33 +3,13 @@ import { Hero } from "./components/Hero";
 import { Showcase } from "./components/Showcase";
 import { Footer } from "./components/Footer";
 import { NotFound } from "./pages/NotFound";
+import { AnimatedBackground } from "./components/AnimatedBackground";
 import { fetchLatestDownloadUrl, GITHUB_RELEASES_URL } from "./lib/github";
 
 function App() {
   const [downloadUrl, setDownloadUrl] = useState(GITHUB_RELEASES_URL);
   const path = window.location.pathname;
   const isNotFound = path !== "/" && path !== "/index.html";
-
-  // Scroll-triggered animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
-    );
-
-    const elements = document.querySelectorAll(
-      ".animate-on-scroll, .animate-children",
-    );
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
 
   useEffect(() => {
     let isActive = true;
@@ -59,6 +39,7 @@ function App() {
 
   return (
     <div className="app">
+      <AnimatedBackground />
       <main>
         <Hero downloadUrl={downloadUrl} />
         <Showcase />

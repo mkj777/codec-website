@@ -1,9 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import screenshotLibrary from "../assets/Codec_LibraryView.png";
 import screenshotGame from "../assets/Codec_GameDetail.png";
 import screenshotIntro from "../assets/Codec_Onboarding.png";
 import screenshotStart from "../assets/Codec_Loading.png";
 import "./components.css";
+
+const EASE = [0.4, 0, 0.2, 1] as const;
 
 const screenshots = [
   { src: screenshotIntro, alt: "Codec Welcome Screen", label: "Onboarding" },
@@ -44,22 +47,34 @@ export function Showcase() {
   return (
     <section className="showcase" id="showcase">
       <div className="showcase-container">
-        <div className="showcase-header animate-on-scroll">
+        <motion.div
+          className="showcase-header"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
           <h2 className="showcase-title">How it looks</h2>
           <p className="showcase-subtitle">
             More features to come, still in Development
           </p>
-        </div>
+        </motion.div>
 
-        <div
+        <motion.div
           className="showcase-screenshot-wrapper"
+          initial={{ opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.7, ease: EASE, delay: 0.15 }}
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          <button
+          <motion.button
             className="showcase-nav-button"
             onClick={goToPrev}
             aria-label="Previous screenshot"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.93 }}
           >
             <svg
               width="24"
@@ -71,22 +86,21 @@ export function Showcase() {
             >
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-          </button>
+          </motion.button>
 
           <div className="showcase-screenshot-container">
-            <div
-              className="showcase-slide-track"
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-              {screenshots.map((shot, index) => (
-                <img
-                  key={index}
-                  src={shot.src}
-                  alt={shot.alt}
-                  className="showcase-screenshot"
-                />
-              ))}
-            </div>
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={activeIndex}
+                src={screenshots[activeIndex].src}
+                alt={screenshots[activeIndex].alt}
+                className="showcase-screenshot"
+                initial={{ opacity: 0, x: 40 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -40 }}
+                transition={{ duration: 0.38, ease: EASE }}
+              />
+            </AnimatePresence>
             <div className="showcase-slide-info">
               <span className="showcase-slide-label">
                 {screenshots[activeIndex].label}
@@ -107,10 +121,12 @@ export function Showcase() {
             </div>
           </div>
 
-          <button
+          <motion.button
             className="showcase-nav-button"
             onClick={goToNext}
             aria-label="Next screenshot"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.93 }}
           >
             <svg
               width="24"
@@ -122,12 +138,18 @@ export function Showcase() {
             >
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-          </button>
+          </motion.button>
 
           <div className="showcase-glow"></div>
-        </div>
+        </motion.div>
 
-        <div className="showcase-highlights">
+        <motion.div
+          className="showcase-highlights"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.6, ease: EASE, delay: 0.3 }}
+        >
           <div className="showcase-highlight">
             <span className="showcase-highlight-label">Auto-detect</span>
             <span className="showcase-highlight-desc">
@@ -148,7 +170,7 @@ export function Showcase() {
               launch Games through Codec
             </span>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
