@@ -271,3 +271,15 @@ ul {
 main {
   flex: 1;
 }
+
+.app-copyright {
+  position: fixed;
+  bottom: 1.1rem;
+  right: 1.5rem;
+  font-family: "Sansation", sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 100;
+  user-select: none;
+}

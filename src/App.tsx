@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Hero } from "./components/Hero";
-import { Footer } from "./components/Footer";
 import { NotFound } from "./pages/NotFound";
 import { AnimatedBackground } from "./components/AnimatedBackground";
 import { fetchLatestDownloadUrl, GITHUB_RELEASES_URL } from "./lib/github";
@@ -42,7 +41,7 @@ function App() {
       <main>
         <Hero downloadUrl={downloadUrl} />
       </main>
-      <Footer />
+      <span className="app-copyright">© 2026 Codec.</span>
     </div>
   );
 }
