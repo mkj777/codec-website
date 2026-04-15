@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Hero } from "./components/Hero";
-import { Showcase } from "./components/Showcase";
 import { Footer } from "./components/Footer";
 import { NotFound } from "./pages/NotFound";
 import { AnimatedBackground } from "./components/AnimatedBackground";
@@ -42,7 +41,6 @@ function App() {
       <AnimatedBackground />
       <main>
         <Hero downloadUrl={downloadUrl} />
-        <Showcase />
       </main>
       <Footer />
     </div>

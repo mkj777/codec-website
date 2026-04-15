@@ -77,14 +77,6 @@ export function Hero({ downloadUrl }: HeroProps) {
               <GitHubIcon size={18} />
               View on GitHub
             </motion.a>
-            <motion.a
-              href="#showcase"
-              className="hero-link"
-              variants={itemVariant}
-              whileHover={{ x: 3 }}
-            >
-              See how it works
-            </motion.a>
           </motion.div>
           <motion.div className="hero-platforms" variants={itemVariant}>
             <WindowsIcon size={16} className="hero-platform-icon" />
