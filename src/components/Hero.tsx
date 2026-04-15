@@ -82,6 +82,23 @@ export function Hero({ downloadUrl }: HeroProps) {
             <WindowsIcon size={16} className="hero-platform-icon" />
             <span className="hero-platform-label">Windows 10/11</span>
           </motion.div>
+
+          <motion.div className="showcase-highlights" variants={itemVariant}>
+            <div className="showcase-highlight">
+              <span className="showcase-highlight-label">Auto-detect</span>
+              <span className="showcase-highlight-desc">no matter where they are from</span>
+            </div>
+            <div className="showcase-highlight-divider"></div>
+            <div className="showcase-highlight">
+              <span className="showcase-highlight-label">Launch-Script</span>
+              <span className="showcase-highlight-desc">supports Launch Scripts</span>
+            </div>
+            <div className="showcase-highlight-divider"></div>
+            <div className="showcase-highlight">
+              <span className="showcase-highlight-label">Play them</span>
+              <span className="showcase-highlight-desc">launch Games through Codec</span>
+            </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
