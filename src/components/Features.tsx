@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import {
   ScanIcon,
   LibraryIcon,
@@ -41,6 +42,23 @@ const features = [
   },
 ];
 
+const EASE = [0.4, 0, 0.2, 1] as const;
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+};
+
+const gridVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+};
+
 export function Features() {
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const card = e.currentTarget;
@@ -54,25 +72,40 @@ export function Features() {
   return (
     <section className="features" id="features">
       <div className="features-container">
-        <div className="features-header animate-on-scroll">
+        <motion.div
+          className="features-header"
+          variants={headerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           <h2 className="features-title">Simple by design</h2>
           <p className="features-subtitle">
             A lightweight library that gets out of your way.
           </p>
-        </div>
-        <div className="features-grid animate-children">
+        </motion.div>
+        <motion.div
+          className="features-grid"
+          variants={gridVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+        >
           {features.map((feature, index) => (
-            <article
+            <motion.article
               key={index}
               className="features-card"
+              variants={cardVariants}
               onMouseMove={handleMouseMove}
+              whileHover={{ y: -6, scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
               <div className="features-icon-wrapper">{feature.icon}</div>
               <h3 className="features-card-title">{feature.title}</h3>
               <p className="features-card-description">{feature.description}</p>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

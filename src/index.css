@@ -229,13 +229,57 @@ ul {
   }
 }
 
+/* ----------------------------------------
+   BACKGROUND ANIMATION KEYFRAMES
+   CSS animations run on the GPU compositor
+   thread — no JS RAF loop involved.
+   ---------------------------------------- */
+@keyframes orb-drift {
+  0%, 100% { transform: translate(-50%, -50%) translate(0px, 0px) scale(1); }
+  25%       { transform: translate(-50%, -50%) translate(40px, -30px) scale(1.15); }
+  50%       { transform: translate(-50%, -50%) translate(-30px, 40px) scale(0.92); }
+  75%       { transform: translate(-50%, -50%) translate(20px, -20px) scale(1.08); }
+}
+
+@keyframes particle-float {
+  0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+  50%       { transform: translateY(-20px) scale(1.4); opacity: 0.8; }
+}
+
+@keyframes mascot-float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50%       { transform: translateY(-10px) scale(1.02); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [style*="orb-drift"],
+  [style*="particle-float"],
+  [style*="mascot-float"] {
+    animation: none !important;
+  }
+}
+
 /* App Layout */
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 main {
   flex: 1;
+}
+
+.app-copyright {
+  position: fixed;
+  bottom: 1.1rem;
+  right: 1.5rem;
+  font-family: "Sansation", sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  pointer-events: none;
+  z-index: 100;
+  user-select: none;
 }

@@ -171,18 +171,12 @@
   max-height: 380px;
   object-fit: contain;
   filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.132));
-  animation: breathe 6s ease-in-out infinite;
   transform-origin: bottom center;
+  will-change: transform;
 }
 
-@keyframes breathe {
-  0%,
-  100% {
-    transform: scale(1) translateY(0);
-  }
-  50% {
-    transform: scale(1.02) translateY(-4px);
-  }
+.hero-mascot-float {
+  animation: mascot-float 6s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
@@ -329,20 +323,12 @@
   justify-content: center;
 }
 
-.showcase-slide-track {
-  display: flex;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  width: 100%;
-  height: 100%;
-}
-
 .showcase-screenshot {
   max-width: 100%;
   max-height: 100%;
   height: auto;
   width: auto;
   display: block;
-  flex-shrink: 0;
   object-fit: contain;
 }
 
@@ -425,15 +411,15 @@
 .showcase-highlights {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 2rem;
-  margin-top: 2.5rem;
+  margin-top: 0.5rem;
 }
 
 .showcase-highlight {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 0.25rem;
 }
 
@@ -548,9 +534,7 @@
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 2rem;
-  transition:
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    border-color 0.3s ease;
+  transition: border-color 0.3s ease;
   will-change: transform;
   overflow: hidden;
 }
@@ -573,7 +557,6 @@
 }
 
 .features-card:hover {
-  transform: translateY(-6px) scale(1.02);
   border-color: rgba(197, 66, 37, 0.4);
 }
 
@@ -847,54 +830,3 @@
   }
 }
 
-/* ----------------------------------------
-   FOOTER
-   ---------------------------------------- */
-.footer {
-  padding: 1.5rem;
-  border-top: 1px solid var(--border);
-}
-
-.footer-container {
-  max-width: 1000px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  color: inherit;
-}
-
-.footer-logo-icon {
-  width: 24px;
-  height: 24px;
-  object-fit: contain;
-}
-
-.footer-logo-text {
-  font-family: "Sansation", sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.footer-copyright {
-  font-family: "Sansation", sans-serif;
-  font-size: 0.8rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-@media (max-width: 480px) {
-  .footer-container {
-    flex-direction: column;
-    gap: 0.75rem;
-    text-align: center;
-  }
-}
