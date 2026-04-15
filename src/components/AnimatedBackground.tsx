@@ -1,5 +1,3 @@
-import { motion } from "framer-motion";
-
 type Orb = {
   id: number;
   x: string;
@@ -18,13 +16,13 @@ const orbs: Orb[] = [
   { id: 4, x: "85%", y: "55%", size: 260, duration: 20, delay: 6, opacity: 0.05 },
 ];
 
-const particles = Array.from({ length: 24 }, (_, i) => ({
+const particles = Array.from({ length: 12 }, (_, i) => ({
   id: i,
   x: `${(i * 37 + 5) % 100}%`,
   y: `${(i * 53 + 10) % 100}%`,
   size: 1 + (i % 3),
   duration: 6 + (i % 8),
-  delay: (i * 0.4) % 5,
+  delay: (i * 0.8) % 5,
 }));
 
 export function AnimatedBackground() {
@@ -39,9 +37,9 @@ export function AnimatedBackground() {
         overflow: "hidden",
       }}
     >
-      {/* Animated gradient orbs */}
+      {/* Animated gradient orbs — CSS animation runs on the GPU compositor thread */}
       {orbs.map((orb) => (
-        <motion.div
+        <div
           key={orb.id}
           style={{
             position: "absolute",
@@ -52,26 +50,15 @@ export function AnimatedBackground() {
             borderRadius: "50%",
             background: `radial-gradient(circle, rgba(197,66,37,${orb.opacity * 2}) 0%, rgba(197,66,37,${orb.opacity}) 40%, transparent 70%)`,
             filter: "blur(60px)",
-            transform: "translate(-50%, -50%)",
-          }}
-          animate={{
-            x: [0, 40, -30, 20, 0],
-            y: [0, -30, 40, -20, 0],
-            scale: [1, 1.15, 0.92, 1.08, 1],
-          }}
-          transition={{
-            duration: orb.duration,
-            delay: orb.delay,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "easeInOut",
+            willChange: "transform",
+            animation: `orb-drift ${orb.duration}s ease-in-out ${orb.delay}s infinite`,
           }}
         />
       ))}
 
       {/* Floating particles */}
       {particles.map((p) => (
-        <motion.div
+        <div
           key={p.id}
           style={{
             position: "absolute",
@@ -81,18 +68,7 @@ export function AnimatedBackground() {
             height: p.size,
             borderRadius: "50%",
             background: "rgba(197,66,37,0.5)",
-          }}
-          animate={{
-            y: [0, -20, 0],
-            opacity: [0.3, 0.8, 0.3],
-            scale: [1, 1.4, 1],
-          }}
-          transition={{
-            duration: p.duration,
-            delay: p.delay,
-            repeat: Infinity,
-            repeatType: "loop",
-            ease: "easeInOut",
+            animation: `particle-float ${p.duration}s ease-in-out ${p.delay}s infinite`,
           }}
         />
       ))}

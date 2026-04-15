@@ -100,20 +100,10 @@ export function Hero({ downloadUrl }: HeroProps) {
         >
           <div className="hero-image-stage">
             <div className="hero-image-wrapper">
-              <motion.img
+              <img
                 src={mascotImage}
                 alt="Codec Mascot resting"
-                className="hero-mascot"
-                animate={{
-                  y: [0, -10, 0],
-                  scale: [1, 1.02, 1],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                }}
+                className="hero-mascot hero-mascot-float"
               />
             </div>
           </div>

@@ -172,6 +172,11 @@
   object-fit: contain;
   filter: drop-shadow(0 20px 32px rgba(0, 0, 0, 0.132));
   transform-origin: bottom center;
+  will-change: transform;
+}
+
+.hero-mascot-float {
+  animation: mascot-float 6s ease-in-out infinite;
 }
 
 @media (max-width: 768px) {
