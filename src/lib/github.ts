@@ -5,7 +5,9 @@ export const GITHUB_REPO_URL = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO
 export const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases`;
 
 const GITHUB_RELEASES_API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases?per_page=1`;
-const INSTALLER_ASSET_PATTERN = /^Codec_Installer_.*\.exe$/i;
+const WINDOWS_INSTALLER_ASSET_NAME = "Codec-win-setup.exe";
+
+export const WINDOWS_INSTALLER_DOWNLOAD_URL = `${GITHUB_REPO_URL}/releases/latest/download/${WINDOWS_INSTALLER_ASSET_NAME}`;
 
 type GitHubReleaseAsset = {
   browser_download_url: string;
@@ -32,8 +34,8 @@ export async function fetchLatestDownloadUrl() {
 
   const installerAsset =
     latestRelease.assets.find((asset) =>
-      INSTALLER_ASSET_PATTERN.test(asset.name),
+      asset.name.toLowerCase() === WINDOWS_INSTALLER_ASSET_NAME.toLowerCase(),
     ) ?? latestRelease.assets.find((asset) => asset.name.endsWith(".exe"));
 
-  return installerAsset?.browser_download_url ?? GITHUB_RELEASES_URL;
+  return installerAsset?.browser_download_url ?? WINDOWS_INSTALLER_DOWNLOAD_URL;
 }

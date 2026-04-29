@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { Hero } from "./components/Hero";
 import { NotFound } from "./pages/NotFound";
 import { AnimatedBackground } from "./components/AnimatedBackground";
-import { fetchLatestDownloadUrl, GITHUB_RELEASES_URL } from "./lib/github";
+import { fetchLatestDownloadUrl, WINDOWS_INSTALLER_DOWNLOAD_URL } from "./lib/github";
 
 function App() {
-  const [downloadUrl, setDownloadUrl] = useState(GITHUB_RELEASES_URL);
+  const [downloadUrl, setDownloadUrl] = useState(WINDOWS_INSTALLER_DOWNLOAD_URL);
   const path = window.location.pathname;
   const isNotFound = path !== "/" && path !== "/index.html";
 
