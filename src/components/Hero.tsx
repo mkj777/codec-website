@@ -5,9 +5,10 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion"
-import { Download, ExternalLink } from "lucide-react"
+import { Download } from "lucide-react"
 
 import mascotImage from "@/assets/shrimpSleep.png"
+import { GitHubMark } from "@/components/GitHubMark"
 import { Button } from "@/components/ui/button"
 import { GITHUB_REPO_URL } from "@/lib/github"
 import { getDownloadHint } from "@/lib/browser"
@@ -64,10 +65,47 @@ function CapsuleGrid({
   )
 }
 
+function CapsuleArtwork({
+  shouldReduceMotion,
+}: {
+  shouldReduceMotion: boolean
+}) {
+  return (
+    <>
+      <div
+        className="absolute -inset-x-12 -inset-y-10 sm:-inset-x-16 sm:-inset-y-12 lg:-inset-x-32 lg:-inset-y-20"
+        data-capsule-blur
+        style={BLUR_FADE_MASK}
+      >
+        <div className="absolute inset-x-12 inset-y-10 sm:inset-x-16 sm:inset-y-12 lg:inset-x-32 lg:inset-y-20">
+          <CapsuleGrid className="scale-[1.12] opacity-70 brightness-[.4] saturate-[.7] blur-[56px]" />
+        </div>
+      </div>
+      <motion.div
+        animate={{ clipPath: "inset(0 0% 0 0%)" }}
+        className="absolute inset-0"
+        data-capsule-reveal
+        initial={
+          shouldReduceMotion
+            ? false
+            : { clipPath: "inset(0 46% 0 46%)" }
+        }
+        transition={{ duration: 1.15, delay: 0.16, ease: EASE }}
+      >
+        <CapsuleGrid
+          className="brightness-[.82] saturate-[.9]"
+          style={SHARP_CAPSULE_MASK}
+        />
+      </motion.div>
+    </>
+  )
+}
+
 export function Hero({ downloadUrl }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
   const dismissTimerRef = useRef<number | undefined>(undefined)
   const shouldReduceMotion = useReducedMotion()
+  const [artworkReady, setArtworkReady] = useState(false)
   const [hintOpen, setHintOpen] = useState(false)
   const [hintMessage, setHintMessage] = useState("")
   const [hintVersion, setHintVersion] = useState(0)
@@ -77,6 +115,23 @@ export function Hero({ downloadUrl }: HeroProps) {
   })
   const capsuleX = useTransform(scrollYProgress, [0, 1], [0, -18])
   const mascotY = useTransform(scrollYProgress, [0, 1], [0, -20])
+
+  useEffect(() => {
+    let cancelled = false
+    const decodes = selectedCapsules.map((src) => {
+      const image = new Image()
+      image.src = src
+      return image.decode().catch(() => undefined)
+    })
+
+    void Promise.all(decodes).then(() => {
+      if (!cancelled) setArtworkReady(true)
+    })
+
+    return () => {
+      cancelled = true
+    }
+  }, [])
 
   useEffect(
     () => () => {
@@ -126,44 +181,20 @@ export function Hero({ downloadUrl }: HeroProps) {
 
           <main className="relative grid min-h-0 flex-1 grid-rows-[minmax(200px,34svh)_auto] content-center gap-3 py-3 sm:grid-rows-[minmax(240px,40svh)_auto] sm:gap-5 lg:grid-cols-12 lg:grid-rows-1 lg:items-center lg:py-8">
             <div className="relative min-h-0 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:h-[70svh]">
-              <motion.div
-                aria-hidden="true"
-                className="absolute inset-x-[2%] top-[2%] aspect-[5/3] origin-right sm:inset-x-0 sm:top-[4%] lg:left-0 lg:right-[-3%] lg:top-[8%]"
-                data-capsule-stage
-                style={
-                  shouldReduceMotion ? undefined : { x: capsuleX }
-                }
-              >
-                <div
-                  className="absolute -inset-[20%]"
-                  style={BLUR_FADE_MASK}
-                >
-                  <div className="absolute inset-[14.286%]">
-                    <CapsuleGrid className="scale-[1.12] opacity-70 brightness-[.4] saturate-[.7] blur-[56px]" />
-                  </div>
-                </div>
+              {artworkReady && (
                 <motion.div
-                  animate={{
-                    opacity: 1,
-                    clipPath: "inset(0 0% 0 0%)",
-                  }}
-                  className="absolute inset-0"
-                  initial={
-                    shouldReduceMotion
-                      ? false
-                      : {
-                          opacity: 0,
-                          clipPath: "inset(0 46% 0 46%)",
-                        }
+                  aria-hidden="true"
+                  className="absolute inset-x-[2%] top-[2%] aspect-[5/3] origin-right sm:inset-x-0 sm:top-[4%] lg:left-0 lg:right-[-3%] lg:top-[8%]"
+                  data-capsule-stage
+                  style={
+                    shouldReduceMotion ? undefined : { x: capsuleX }
                   }
-                  transition={{ duration: 1.15, delay: 0.16, ease: EASE }}
                 >
-                  <CapsuleGrid
-                    className="brightness-[.82] saturate-[.9]"
-                    style={SHARP_CAPSULE_MASK}
+                  <CapsuleArtwork
+                    shouldReduceMotion={Boolean(shouldReduceMotion)}
                   />
                 </motion.div>
-              </motion.div>
+              )}
 
               <motion.img
                 src={mascotImage}
@@ -209,7 +240,7 @@ export function Hero({ downloadUrl }: HeroProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    <ExternalLink aria-hidden="true" />
+                    <GitHubMark aria-hidden="true" />
                     View on GitHub
                   </a>
                 </Button>

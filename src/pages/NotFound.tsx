@@ -1,7 +1,8 @@
 import { motion, useReducedMotion } from "framer-motion"
-import { ExternalLink, House } from "lucide-react"
+import { House } from "lucide-react"
 
 import mascotImage from "@/assets/shrimpSleep.png"
+import { GitHubMark } from "@/components/GitHubMark"
 import { Button } from "@/components/ui/button"
 import { GITHUB_REPO_URL } from "@/lib/github"
 
@@ -40,7 +41,7 @@ export function NotFound() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <ExternalLink aria-hidden="true" />
+              <GitHubMark aria-hidden="true" />
               View on GitHub
             </a>
           </Button>
