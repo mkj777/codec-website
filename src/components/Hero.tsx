@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef, useState, type CSSProperties } from "react"
 import {
   motion,
   useReducedMotion,
@@ -7,11 +7,11 @@ import {
 } from "framer-motion"
 import { Download, ExternalLink } from "lucide-react"
 
-import libraryScreenshot from "@/assets/Codec_LibraryView.png"
 import mascotImage from "@/assets/shrimpSleep.png"
 import { Button } from "@/components/ui/button"
 import { GITHUB_REPO_URL } from "@/lib/github"
 import { getDownloadHint } from "@/lib/browser"
+import { sampleUnique } from "@/lib/random"
 
 import { DownloadHint } from "./DownloadHint"
 
@@ -20,6 +20,49 @@ type HeroProps = {
 }
 
 const EASE = [0.22, 1, 0.36, 1] as const
+const capsuleModules = import.meta.glob<string>(
+  "/src/assets/steam_*_library_capsule*.jpg",
+  { eager: true, import: "default" },
+)
+const selectedCapsules = sampleUnique(Object.values(capsuleModules), 10)
+const SHARP_CAPSULE_MASK = {
+  maskImage:
+    "radial-gradient(ellipse 74% 82% at center, black 52%, rgb(0 0 0 / 72%) 70%, transparent 100%)",
+  WebkitMaskImage:
+    "radial-gradient(ellipse 74% 82% at center, black 52%, rgb(0 0 0 / 72%) 70%, transparent 100%)",
+} satisfies CSSProperties
+const BLUR_FADE_MASK = {
+  maskImage:
+    "radial-gradient(ellipse 72% 78% at center, black 28%, rgb(0 0 0 / 78%) 42%, rgb(0 0 0 / 38%) 52%, transparent 64%)",
+  WebkitMaskImage:
+    "radial-gradient(ellipse 72% 78% at center, black 28%, rgb(0 0 0 / 78%) 42%, rgb(0 0 0 / 38%) 52%, transparent 64%)",
+} satisfies CSSProperties
+
+function CapsuleGrid({
+  className = "",
+  style,
+}: {
+  className?: string
+  style?: CSSProperties
+}) {
+  return (
+    <div
+      className={`absolute left-1/2 top-1/2 grid w-[85%] -translate-x-1/2 -translate-y-1/2 grid-cols-5 items-center gap-x-2 gap-y-4 sm:gap-x-3 sm:gap-y-5 lg:gap-y-6 ${className}`}
+      data-capsule-grid
+      style={style}
+    >
+      {selectedCapsules.map((src) => (
+        <img
+          alt=""
+          className="aspect-[2/3] h-auto w-full rounded-md object-contain"
+          decoding="async"
+          key={src}
+          src={src}
+        />
+      ))}
+    </div>
+  )
+}
 
 export function Hero({ downloadUrl }: HeroProps) {
   const sectionRef = useRef<HTMLElement>(null)
@@ -32,8 +75,7 @@ export function Hero({ downloadUrl }: HeroProps) {
     target: sectionRef,
     offset: ["start start", "end start"],
   })
-  const screenshotScale = useTransform(scrollYProgress, [0, 1], [0.98, 1.04])
-  const screenshotX = useTransform(scrollYProgress, [0, 1], [0, -18])
+  const capsuleX = useTransform(scrollYProgress, [0, 1], [0, -18])
   const mascotY = useTransform(scrollYProgress, [0, 1], [0, -20])
 
   useEffect(
@@ -79,46 +121,48 @@ export function Hero({ downloadUrl }: HeroProps) {
             >
               Codec
             </a>
-            <Button asChild variant="ghost" size="sm" className="px-2">
-              <a
-                href={GITHUB_REPO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ExternalLink aria-hidden="true" />
-                GitHub
-              </a>
-            </Button>
+            <span className="text-sm font-bold text-primary">Pre-Release</span>
           </motion.header>
 
           <main className="relative grid min-h-0 flex-1 grid-rows-[minmax(200px,34svh)_auto] content-center gap-3 py-3 sm:grid-rows-[minmax(240px,40svh)_auto] sm:gap-5 lg:grid-cols-12 lg:grid-rows-1 lg:items-center lg:py-8">
             <div className="relative min-h-0 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:h-[70svh]">
               <motion.div
-                className="absolute inset-x-0 top-[5%] h-[72%] origin-right overflow-hidden rounded-md border border-border bg-surface sm:top-[8%] lg:right-[-3%] lg:h-[74%]"
-                initial={
-                  shouldReduceMotion
-                    ? false
-                    : {
-                        opacity: 0,
-                        clipPath: "inset(0 46% 0 46%)",
-                      }
-                }
-                animate={{
-                  opacity: 1,
-                  clipPath: "inset(0 0% 0 0%)",
-                }}
+                aria-hidden="true"
+                className="absolute inset-x-[2%] top-[2%] aspect-[5/3] origin-right sm:inset-x-0 sm:top-[4%] lg:left-0 lg:right-[-3%] lg:top-[8%]"
+                data-capsule-stage
                 style={
-                  shouldReduceMotion
-                    ? undefined
-                    : { scale: screenshotScale, x: screenshotX }
+                  shouldReduceMotion ? undefined : { x: capsuleX }
                 }
-                transition={{ duration: 1.15, delay: 0.16, ease: EASE }}
               >
-                <img
-                  src={libraryScreenshot}
-                  alt="Codec library showing games from one collection"
-                  className="h-full w-full object-cover object-[48%_center]"
-                />
+                <div
+                  className="absolute -inset-[20%]"
+                  style={BLUR_FADE_MASK}
+                >
+                  <div className="absolute inset-[14.286%]">
+                    <CapsuleGrid className="scale-[1.12] opacity-70 brightness-[.4] saturate-[.7] blur-[56px]" />
+                  </div>
+                </div>
+                <motion.div
+                  animate={{
+                    opacity: 1,
+                    clipPath: "inset(0 0% 0 0%)",
+                  }}
+                  className="absolute inset-0"
+                  initial={
+                    shouldReduceMotion
+                      ? false
+                      : {
+                          opacity: 0,
+                          clipPath: "inset(0 46% 0 46%)",
+                        }
+                  }
+                  transition={{ duration: 1.15, delay: 0.16, ease: EASE }}
+                >
+                  <CapsuleGrid
+                    className="brightness-[.82] saturate-[.9]"
+                    style={SHARP_CAPSULE_MASK}
+                  />
+                </motion.div>
               </motion.div>
 
               <motion.img
@@ -170,9 +214,7 @@ export function Hero({ downloadUrl }: HeroProps) {
                   </a>
                 </Button>
               </div>
-              <p className="mt-3 text-sm text-utility">
-                Windows 10+ · Work in progress
-              </p>
+              <p className="mt-3 text-sm text-utility">Windows 10+</p>
             </motion.div>
           </main>
 

@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "check:browser-hints": "node --experimental-strip-types scripts/check-browser-hints.ts",
+    "check:capsules": "node --experimental-strip-types scripts/check-capsule-sampling.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
