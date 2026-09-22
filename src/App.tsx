@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { Analytics } from "@vercel/analytics/react"
 
 import { Hero } from "@/components/Hero"
 import {
@@ -37,10 +38,20 @@ function App() {
   }, [isNotFound])
 
   if (isNotFound) {
-    return <NotFound />
+    return (
+      <>
+        <NotFound />
+        <Analytics />
+      </>
+    )
   }
 
-  return <Hero downloadUrl={downloadUrl} />
+  return (
+    <>
+      <Hero downloadUrl={downloadUrl} />
+      <Analytics />
+    </>
+  )
 }
 
 export default App
