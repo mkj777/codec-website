@@ -1,0 +1,33 @@
+# Codec
+
+> Codec is a free, open source game launcher and unified game library for Windows 10 and 11. It scans your PC, finds games from Steam, Epic Games, Riot Games and common install folders, adds artwork and details, and launches everything from one clean library. No required account, and the library is stored locally. Made by Maximilian Kielholz, MIT licensed, in active development (latest release 0.8.0).
+
+Codec fits people looking for one launcher for all their PC games, a unified game library that combines Steam, Epic Games and other stores, or a simple Playnite alternative on Windows.
+
+## What Codec does
+
+- Scans local drives and launcher libraries and builds the library automatically
+- Dedicated scanners for Steam, Epic Games and Riot Games
+- Also finds games in the usual install folders of GOG Galaxy, Ubisoft Connect, the EA app, Xbox and Rockstar Games
+- Any game executable can be added by hand
+- Covers, artwork and details from Steam, SteamGridDB, IGDB, RAWG and HowLongToBeat
+- Optional Steam sign-in adds owned Steam games and syncs achievements
+- Games launch directly, through their own launcher, or through custom launch scripts
+- Runs in the system tray and updates itself through its installer
+
+## Facts
+
+- Platform: Windows 10 and Windows 11, 64-bit. No macOS or Linux version.
+- Price: free. License: MIT.
+- Built with C#, .NET 9 and Avalonia UI.
+
+## Links
+
+- [Website](https://codeclibrary.dev/): overview, features and FAQ
+- [Download for Windows](https://github.com/mkj777/codec/releases/latest/download/Codec-win-Setup.exe): latest installer
+- [Releases](https://github.com/mkj777/codec/releases): installer, portable zip and release notes
+- [Source code](https://github.com/mkj777/codec): GitHub repository
+
+## Optional
+
+- [Author](https://maximiliankielholz.de): Maximilian Kielholz

@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import { Hero } from "@/components/Hero"
+import { Overview } from "@/components/Overview"
 import {
   fetchLatestDownloadUrl,
   WINDOWS_INSTALLER_DOWNLOAD_URL,
@@ -11,7 +12,7 @@ import { NotFound } from "@/pages/NotFound"
 
 function App() {
   const [downloadUrl, setDownloadUrl] = useState(WINDOWS_INSTALLER_DOWNLOAD_URL)
-  const path = window.location.pathname
+  const path = typeof window === "undefined" ? "/" : window.location.pathname
   const isNotFound = path !== "/" && path !== "/index.html"
 
   useEffect(() => {
@@ -51,6 +52,7 @@ function App() {
   return (
     <>
       <Hero downloadUrl={downloadUrl} />
+      <Overview downloadUrl={downloadUrl} />
       <Analytics />
       <SpeedInsights />
     </>
