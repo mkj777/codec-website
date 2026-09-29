@@ -55,6 +55,7 @@ export function Hero({ downloadUrl }: HeroProps) {
           <nav className={`hero-links ${isMenuOpen ? "is-open" : ""}`} aria-label="Main navigation">
             <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
             <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
+            <a href="#faq" onClick={() => setIsMenuOpen(false)}>FAQ</a>
             <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">GitHub</a>
             <a className="hero-nav-download" href={downloadUrl}>Download</a>
           </nav>
@@ -77,7 +78,7 @@ export function Hero({ downloadUrl }: HeroProps) {
                 <GitHubIcon size={16} /> View on GitHub
               </a>
             </div>
-            <span className="hero-meta">Windows 10 and 11 · Free and open source</span>
+            <span className="hero-meta">Windows 10 and 11, free and open source</span>
           </motion.div>
         </div>
 

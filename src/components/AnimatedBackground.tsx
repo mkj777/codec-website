@@ -37,7 +37,7 @@ export function AnimatedBackground() {
         overflow: "hidden",
       }}
     >
-      {/* Animated gradient orbs — CSS animation runs on the GPU compositor thread */}
+      {/* Animated gradient orbs: the CSS animation runs on the GPU compositor thread */}
       {orbs.map((orb) => (
         <div
           key={orb.id}

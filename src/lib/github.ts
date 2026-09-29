@@ -5,7 +5,7 @@ export const GITHUB_REPO_URL = `https://github.com/${GITHUB_OWNER}/${GITHUB_REPO
 export const GITHUB_RELEASES_URL = `${GITHUB_REPO_URL}/releases`;
 
 const GITHUB_RELEASES_API_URL = `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/releases?per_page=1`;
-const WINDOWS_INSTALLER_ASSET_NAME = "Codec-win-setup.exe";
+const WINDOWS_INSTALLER_ASSET_NAME = "Codec-win-Setup.exe";
 
 export const WINDOWS_INSTALLER_DOWNLOAD_URL = `${GITHUB_REPO_URL}/releases/latest/download/${WINDOWS_INSTALLER_ASSET_NAME}`;
 

@@ -5,7 +5,7 @@ import { WordsPullUpMultiStyle } from "./RevealText";
 import "./components.css";
 
 const supportingCopy =
-  "Codec finds the games already on your PC, brings their artwork and details together, and launches them from one place. No required account. No cloud library. Just your games, where they belong.";
+  "Codec finds the games already on your PC, from Steam, Epic Games, Riot Games and your own folders, brings their artwork and details together, and launches them from one place. No required account. No cloud library. Just your games, where they belong.";
 
 function RevealedCopy() {
   const ref = useRef<HTMLParagraphElement>(null);
@@ -26,6 +26,7 @@ export function About() {
         <img className="about-mascot" src={mascotImage} alt="" aria-hidden="true" />
         <p className="about-label">A library, not another launcher</p>
         <WordsPullUpMultiStyle
+          as="h2"
           className="about-title"
           segments={[
             { text: "Every launcher has a library." },

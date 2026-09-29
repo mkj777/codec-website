@@ -6,6 +6,7 @@ import logoIcon from "../assets/icon.png";
 import { BoltIcon, DownloadIcon, LibraryIcon, ScanIcon, ShieldIcon } from "./Icons";
 import { WordsPullUpMultiStyle } from "./RevealText";
 import { GITHUB_REPO_URL } from "../lib/github";
+import { Faq } from "./Faq";
 import "./components.css";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -45,6 +46,7 @@ export function Features({ downloadUrl }: { downloadUrl: string }) {
     <section className="features" id="features">
       <div className="features-inner">
         <WordsPullUpMultiStyle
+          as="h2"
           className="features-heading"
           segments={[
             { text: "Everything your game library needs." },
@@ -81,6 +83,8 @@ export function Features({ downloadUrl }: { downloadUrl: string }) {
           ))}
         </motion.div>
 
+        <Faq />
+
         <div className="features-close">
           <div>
             <img src={logoIcon} alt="" />
@@ -92,7 +96,7 @@ export function Features({ downloadUrl }: { downloadUrl: string }) {
         </div>
 
         <footer className="site-footer">
-          <span>© {new Date().getFullYear()} Codec</span>
+          <span>© {new Date().getFullYear()} Codec, a free game launcher for Windows</span>
           <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">GitHub</a>
         </footer>
       </div>

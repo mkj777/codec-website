@@ -34,16 +34,18 @@ type TextSegment = { text: string; className?: string };
 export function WordsPullUpMultiStyle({
   segments,
   className,
+  as: Tag = "div",
 }: {
   segments: TextSegment[];
   className?: string;
+  as?: "div" | "h2";
 }) {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement & HTMLHeadingElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
   let wordIndex = 0;
 
   return (
-    <div className={className} ref={ref}>
+    <Tag className={className} ref={ref}>
       {segments.flatMap((segment) =>
         segment.text.split(" ").map((word) => {
           const delay = wordIndex++ * 0.055;
@@ -60,6 +62,6 @@ export function WordsPullUpMultiStyle({
           );
         }),
       )}
-    </div>
+    </Tag>
   );
 }

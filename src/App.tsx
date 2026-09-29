@@ -7,7 +7,7 @@ import { fetchLatestDownloadUrl, WINDOWS_INSTALLER_DOWNLOAD_URL } from "./lib/gi
 
 function App() {
   const [downloadUrl, setDownloadUrl] = useState(WINDOWS_INSTALLER_DOWNLOAD_URL);
-  const path = window.location.pathname;
+  const path = typeof window === "undefined" ? "/" : window.location.pathname;
   const isNotFound = path !== "/" && path !== "/index.html";
 
   useEffect(() => {
