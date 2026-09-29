@@ -1,122 +1,86 @@
 import { motion } from "framer-motion";
-import mascotImage from "../assets/shrimpSleep.png";
-import { DownloadIcon, GitHubIcon, WindowsIcon } from "./Icons";
+import { useState } from "react";
+import heroCampfire from "../assets/hero-campfire.png";
+import heroBackground from "../assets/hero-background.mp4";
+import logoIcon from "../assets/icon.png";
+import { DownloadIcon, GitHubIcon } from "./Icons";
+import { WordsPullUp } from "./RevealText";
 import { GITHUB_REPO_URL } from "../lib/github";
 import "./components.css";
 
-type HeroProps = {
-  downloadUrl: string;
-};
-
-const EASE = [0.4, 0, 0.2, 1] as const;
-
-const contentVariants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: EASE },
-  },
-};
-
-const staggerContainer = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-};
-
-const itemVariant = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
-};
-
-const mascotVariants = {
-  hidden: { opacity: 0, scale: 0.88, y: 30 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    transition: { duration: 0.9, ease: EASE, delay: 0.2 },
-  },
-};
+type HeroProps = { downloadUrl: string };
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function Hero({ downloadUrl }: HeroProps) {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <section className="hero" id="hero">
-      <div className="hero-container">
-        <motion.div
-          className="hero-content"
-          variants={staggerContainer}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.h1 className="hero-title" variants={contentVariants}>
-            <span className="hero-brand">Codec</span>
-            <span className="hero-title-copy">
-              hopefully the library for everything you need
-            </span>
-          </motion.h1>
-          <motion.div className="hero-actions" id="download" variants={staggerContainer}>
-            <motion.a
-              href={downloadUrl}
-              className="hero-primary-button"
-              variants={itemVariant}
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <DownloadIcon size={18} />
-              Download for Windows
-            </motion.a>
-            <motion.a
-              href={GITHUB_REPO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hero-link"
-              variants={itemVariant}
-              whileHover={{ x: 3 }}
-            >
-              <GitHubIcon size={18} />
-              View on GitHub
-            </motion.a>
-          </motion.div>
-          <motion.div className="hero-platforms" variants={itemVariant}>
-            <WindowsIcon size={16} className="hero-platform-icon" />
-            <span className="hero-platform-label">Windows 10/11</span>
-          </motion.div>
+      {/*
+        THESIS: Your scattered PC game collection becomes one visible place; refuse the generic app-and-copy split hero.
+        OWN-WORLD: Charcoal launcher chrome, warm white type, Codec orange, local game artwork, crisp squared controls.
+        STORY: See the whole library, understand the local-first promise, download Codec.
+        FIRST VIEWPORT: Inset screenshot stage, compact top navigation, enormous CODEC baseline, copy and actions at lower right.
+        FORM: Cinematic product title card translated into a working software landing page.
+      */}
+      <div className="hero-stage">
+        <video
+          className="hero-backdrop"
+          src={heroBackground}
+          poster={heroCampfire}
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          aria-hidden="true"
+        />
+        <div className="hero-shade" aria-hidden="true" />
 
-          <motion.div className="showcase-highlights" variants={itemVariant}>
-            <div className="showcase-highlight">
-              <span className="showcase-highlight-label">Auto-detect</span>
-              <span className="showcase-highlight-desc">no matter where they are from</span>
-            </div>
-            <div className="showcase-highlight-divider"></div>
-            <div className="showcase-highlight">
-              <span className="showcase-highlight-label">Launch-Script</span>
-              <span className="showcase-highlight-desc">supports Launch Scripts</span>
-            </div>
-            <div className="showcase-highlight-divider"></div>
-            <div className="showcase-highlight">
-              <span className="showcase-highlight-label">Play them</span>
-              <span className="showcase-highlight-desc">launch Games through Codec</span>
-            </div>
-          </motion.div>
-        </motion.div>
+        <header className="hero-nav">
+          <a href="#hero" className="hero-logo" aria-label="Codec home">
+            <img src={logoIcon} alt="" />
+            <span>Codec</span>
+          </a>
+          <button
+            type="button"
+            className="hero-menu-button"
+            aria-label={isMenuOpen ? "Close navigation" : "Open navigation"}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+          </button>
+          <nav className={`hero-links ${isMenuOpen ? "is-open" : ""}`} aria-label="Main navigation">
+            <a href="#about" onClick={() => setIsMenuOpen(false)}>About</a>
+            <a href="#features" onClick={() => setIsMenuOpen(false)}>Features</a>
+            <a href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">GitHub</a>
+            <a className="hero-nav-download" href={downloadUrl}>Download</a>
+          </nav>
+        </header>
 
-        <motion.div
-          className="hero-visual"
-          variants={mascotVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <div className="hero-image-stage">
-            <div className="hero-image-wrapper">
-              <img
-                src={mascotImage}
-                alt="Codec Mascot resting"
-                className="hero-mascot hero-mascot-float"
-              />
+        <div className="hero-content">
+          <WordsPullUp text="Codec" className="hero-wordmark" />
+          <motion.div
+            className="hero-pitch"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.42, ease: EASE }}
+          >
+            <p>Your games. One calm, fast library.</p>
+            <div className="hero-actions" id="download">
+              <a className="button button-primary" href={downloadUrl}>
+                <DownloadIcon size={17} /> Download for Windows
+              </a>
+              <a className="button button-secondary" href={GITHUB_REPO_URL} target="_blank" rel="noreferrer">
+                <GitHubIcon size={16} /> View on GitHub
+              </a>
             </div>
-          </div>
-        </motion.div>
+            <span className="hero-meta">Windows 10 and 11 · Free and open source</span>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );

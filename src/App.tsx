@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Hero } from "./components/Hero";
+import { About } from "./components/About";
+import { Features } from "./components/Features";
 import { NotFound } from "./pages/NotFound";
-import { AnimatedBackground } from "./components/AnimatedBackground";
 import { fetchLatestDownloadUrl, WINDOWS_INSTALLER_DOWNLOAD_URL } from "./lib/github";
 
 function App() {
@@ -37,11 +38,11 @@ function App() {
 
   return (
     <div className="app">
-      <AnimatedBackground />
       <main>
         <Hero downloadUrl={downloadUrl} />
+        <About />
+        <Features downloadUrl={downloadUrl} />
       </main>
-      <span className="app-copyright">© 2026 Codec.</span>
     </div>
   );
 }

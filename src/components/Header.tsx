@@ -3,9 +3,8 @@ import logoIcon from "../assets/icon.png";
 import "./components.css";
 
 const navLinks = [
+  { label: "Product", href: "#product" },
   { label: "Features", href: "#features" },
-  { label: "Download", href: "#download" },
-  { label: "About", href: "#about" },
 ];
 
 export function Header() {
@@ -15,18 +14,20 @@ export function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header className="header">
       <div className="header-container">
         <a href="/" className="header-logo">
           <img src={logoIcon} alt="Codec Logo" className="header-logo-icon" />
-          <span className="header-logo-text">Codec</span>
+          <span className="header-logo-text">CODEC</span>
         </a>
 
         <button
           className="header-menu-button"
           onClick={toggleMenu}
-          aria-label="Toggle navigation menu"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={isMenuOpen}
         >
           <span className="header-menu-icon"></span>
@@ -39,15 +40,18 @@ export function Header() {
                 <a
                   href={link.href}
                   className="header-nav-link"
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={closeMenu}
                 >
                   {link.label}
                 </a>
               </li>
             ))}
           </ul>
-          <a href="#download" className="header-cta-button">
-            Get Codec
+          <a href="https://github.com/mkj777/codec" target="_blank" rel="noreferrer" className="header-nav-link">
+            GitHub
+          </a>
+          <a href="#download" className="header-download-link" onClick={closeMenu}>
+            Download
           </a>
         </nav>
       </div>
