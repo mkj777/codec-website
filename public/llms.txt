@@ -23,7 +23,7 @@ Codec fits people looking for one launcher for all their PC games, a unified gam
 
 ## Links
 
-- [Website](https://codeclibrary.dev/): overview, features and FAQ
+- [Website](https://codeclibrary.dev/): overview and download
 - [Download for Windows](https://github.com/mkj777/codec/releases/latest/download/Codec-win-Setup.exe): latest installer
 - [Releases](https://github.com/mkj777/codec/releases): installer, portable zip and release notes
 - [Source code](https://github.com/mkj777/codec): GitHub repository
