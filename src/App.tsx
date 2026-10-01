@@ -3,7 +3,6 @@ import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 
 import { Hero } from "@/components/Hero"
-import { Overview } from "@/components/Overview"
 import {
   fetchLatestDownloadUrl,
   WINDOWS_INSTALLER_DOWNLOAD_URL,
@@ -52,7 +51,6 @@ function App() {
   return (
     <>
       <Hero downloadUrl={downloadUrl} />
-      <Overview downloadUrl={downloadUrl} />
       <Analytics />
       <SpeedInsights />
     </>

@@ -12,9 +12,9 @@ Codec is written in C# with .NET 9 and Avalonia UI, is MIT licensed and is in pr
 
 ## About this site
 
-The site is a single page built with React 19, TypeScript, Vite, Tailwind CSS 4 and framer-motion. It has a hero with the download button, a feature overview and an FAQ. Vercel Web Analytics and Speed Insights are loaded on the page.
+The site is a single page built with React 19, TypeScript, Vite, Tailwind CSS 4 and framer-motion. It has a hero with the download button. Vercel Web Analytics and Speed Insights are loaded on the page.
 
-Search engines and AI crawlers that do not run JavaScript still see the full page. After the normal client build, `pnpm build` renders `<App />` once on the server (`src/entry-server.tsx`, run by `scripts/prerender.mjs`) and writes the resulting HTML into `dist/index.html`, together with FAQPage structured data. In the browser, `src/main.tsx` mounts the app with `createRoot`, which replaces the prerendered markup, so there is no hydration step to keep in sync. The FAQ copy lives only in `src/content/faq.ts` and feeds both the visible section and the structured data.
+Search engines and AI crawlers that do not run JavaScript still see the full page. After the normal client build, `pnpm build` renders `<App />` once on the server (`src/entry-server.tsx`, run by `scripts/prerender.mjs`) and writes the resulting HTML into `dist/index.html`. In the browser, `src/main.tsx` mounts the app with `createRoot`, which replaces the prerendered markup, so there is no hydration step to keep in sync.
 
 `index.html` carries the title, description, Open Graph and Twitter tags and the JSON-LD graph (WebSite, SoftwareApplication, Person). When a new Codec version ships, update `softwareVersion` there. `public/` contains `robots.txt`, `sitemap.xml`, `llms.txt` and the social preview image `og.png`.
 

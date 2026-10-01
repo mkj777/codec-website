@@ -9,18 +9,14 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const htmlPath = path.join(root, "dist", "index.html");
 const ssrDir = path.join(root, "dist-ssr");
 
-const { render, faqJsonLd } = await import(pathToFileURL(path.join(ssrDir, "entry-server.js")).href);
+const { render } = await import(pathToFileURL(path.join(ssrDir, "entry-server.js")).href);
 
 const template = await readFile(htmlPath, "utf8");
 const marker = '<div id="root"></div>';
 if (!template.includes(marker)) throw new Error("prerender: #root marker not found in dist/index.html");
 
 const appHtml = render();
-const faqScript = `<script type="application/ld+json">${JSON.stringify(faqJsonLd).replace(/</g, "\u003c")}</script>`;
-
-const html = template
-  .replace(marker, `<div id="root">${appHtml}</div>`)
-  .replace("</head>", `    ${faqScript}\n  </head>`);
+const html = template.replace(marker, `<div id="root">${appHtml}</div>`);
 
 await writeFile(htmlPath, html);
 await rm(ssrDir, { recursive: true, force: true });
