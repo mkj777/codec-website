@@ -72,8 +72,10 @@ function CapsuleArtwork({
 }) {
   return (
     <>
+      {/* Own compositor layer: the 56px blur is rasterized once instead of on
+          every frame of the clip-path reveal and the scroll parallax. */}
       <div
-        className="absolute -inset-x-12 -inset-y-10 sm:-inset-x-16 sm:-inset-y-12 lg:-inset-x-32 lg:-inset-y-20"
+        className="absolute will-change-transform -inset-x-12 -inset-y-10 sm:-inset-x-16 sm:-inset-y-12 lg:-inset-x-32 lg:-inset-y-20"
         data-capsule-blur
         style={BLUR_FADE_MASK}
       >
@@ -182,9 +184,11 @@ export function Hero({ downloadUrl }: HeroProps) {
           <main className="relative grid min-h-0 flex-1 grid-rows-[minmax(200px,34svh)_auto] content-center gap-3 py-3 sm:grid-rows-[minmax(240px,40svh)_auto] sm:gap-5 lg:grid-cols-12 lg:grid-rows-1 lg:items-center lg:py-8">
             <div className="relative min-h-0 lg:col-span-8 lg:col-start-5 lg:row-start-1 lg:h-[70svh]">
               {artworkReady && (
+                // Promoted so the scroll-linked x shift moves a cached layer
+                // instead of re-rasterizing the capsule grids.
                 <motion.div
                   aria-hidden="true"
-                  className="absolute inset-x-[2%] top-[2%] aspect-[5/3] origin-right sm:inset-x-0 sm:top-[4%] lg:left-0 lg:right-[-3%] lg:top-[8%]"
+                  className="absolute will-change-transform inset-x-[2%] top-[2%] aspect-[5/3] origin-right sm:inset-x-0 sm:top-[4%] lg:left-0 lg:right-[-3%] lg:top-[8%]"
                   data-capsule-stage
                   style={
                     shouldReduceMotion ? undefined : { x: capsuleX }
